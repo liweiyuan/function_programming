@@ -1,3 +1,14 @@
+//宏定义
+#![allow(unused)]
+macro_rules! calculate {
+    (evel $e:expr) => {{
+        {
+            let val: usize = $e;
+            println!("{} = {}", stringify!{$e}, val);
+        }
+    }};
+}
+
 #[derive(Debug,PartialEq)]
 struct Shoe {
     size: u32,
@@ -34,10 +45,19 @@ impl Iterator for Counter{
     }
 }
 
+
+
 #[cfg(test)]
 mod tests{
 
     use super::*;
+
+    #[test]
+    fn custom_macro() {
+        calculate!{
+            evel 1 +2
+        }
+    }
 
     #[test]
     fn iterator_demonstration() {
